@@ -1,11 +1,25 @@
-import React from 'react'
-import { Switch, Route } from 'react-router-dom'
+import React from 'react';
+import { Switch, Route } from 'react-router-dom';
 
-import Home from './Home'
-import Movie from './SingleMovie'
+import Home from './Home';
+import SingleMovie from './SingleMovie';
+import Movie from './SingleMovie';
+import Error from './Error';
 
 function App() {
-  return <h2>movie DB starter</h2>
+  return (
+    <Switch>
+      <Route exact path='/'>
+        <Home />
+      </Route>
+      <Route path='/movie/:id'>
+        <Movie />
+      </Route>
+      <Route path='*'>
+        <Error />
+      </Route>
+    </Switch>
+  );
 }
 
-export default App
+export default App;
