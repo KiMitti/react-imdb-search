@@ -280,3 +280,7 @@ Single Movie
   text-align: center;
   padding: 2rem;
 }
+
+.rating {
+  padding: 10px 0;
+}

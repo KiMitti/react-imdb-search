@@ -5,10 +5,12 @@ const url =
   'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png';
 
 const Movies = () => {
-  const { movies } = useGlobalContext();
+  const { movies, loading } = useGlobalContext();
   const movieData = movies.Search;
-  console.log(movies);
-  console.log(movies.Search);
+
+  if (loading) {
+    return <div className='loading'></div>;
+  }
   return (
     <section className='movies'>
       {movieData &&

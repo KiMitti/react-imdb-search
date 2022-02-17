@@ -4,51 +4,66 @@ export const API_ENDPOINT = `https://www.omdbapi.com/?apikey=${process.env.REACT
 const AppContext = React.createContext();
 
 const AppProvider = ({ children }) => {
-  const [value, setValue] = useState('Cats');
+  const [value, setValue] = useState('Marvel');
   const [movies, setMovies] = useState([]);
-  const [single, setSingle] = useState(null);
   const [page, setPage] = useState(1);
+  const [single, setSingle] = useState({});
   const [err, setErr] = useState(null);
+  const [loading, setLoading] = useState(true);
 
-  const fetchMovies = async () => {
+  const fetchData = async (singleID) => {
+    setLoading(true);
     const searchVal = `&s=${value}`;
     const pageNum = `&page=${page}`;
     let url = `${API_ENDPOINT}${searchVal}${pageNum}`;
-
+    if (singleID) {
+      const imdbID = `&i=${singleID}`;
+      url = `${API_ENDPOINT}${imdbID}`;
+    }
     try {
       const response = await fetch(url);
       const data = await response.json();
+
+      if (singleID) {
+        setSingle(data);
+        setLoading(false);
+        return;
+      }
+
       if (data.Response === 'True') {
-        console.log('True!', data);
         setErr(null);
         setMovies(data);
       } else {
         setErr(data.Error);
       }
+      setLoading(false);
     } catch (error) {
       console.log(
         `Whoops! the movies you are trying to reach are currently unavailable. Because: ${error}`
       );
+      setLoading(false);
     }
   };
 
   useEffect(() => {
     //go get new movies
-    console.log('getting new movies!');
-    fetchMovies();
-    console.log(err);
+    fetchData();
+    // eslint-disable-next-line
   }, [value]);
+
   return (
     <AppContext.Provider
       value={{
         test: 'hello!',
         value,
         setValue,
+        loading,
         movies,
         setMovies,
         single,
         setSingle,
         err,
+        fetchData,
       }}
     >
       {children}
