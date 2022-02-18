@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useGlobalContext } from './context';
 
 const Paginate = () => {
-  const { page, setPage, movies, err, loading } = useGlobalContext();
+  const { page, setPage, movies, err, loading, value } = useGlobalContext();
 
   const findPages = () => {
     let number = 1;

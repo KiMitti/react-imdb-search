@@ -44,7 +44,11 @@ const AppProvider = ({ children }) => {
       setLoading(false);
     }
   };
-
+  useEffect(() => {
+    //set page back to page one if value triggers a search
+    setPage(1);
+    // eslint-disable-next-line
+  }, [value]);
   useEffect(() => {
     //go get new movies
     fetchData();

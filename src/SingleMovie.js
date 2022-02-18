@@ -1,6 +1,8 @@
 import React, { useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { useGlobalContext } from './context';
+const url =
+  'https://upload.wikimedia.org/wikipedia/commons/f/fc/No_picture_available.png';
 
 const SingleMovie = () => {
   const { fetchData, single, loading } = useGlobalContext();
@@ -42,13 +44,13 @@ const SingleMovie = () => {
 
   return (
     <section className='single-movie'>
-      <img src={image} alt={title} />
+      <img src={image != 'N/A' ? image : url} alt={title} />
       <div className='single-movie-info'>
         <h2>{title}</h2>
         <p>{desc}</p>
         <h4>{year}</h4>
         <h4 className='rating' style={{ color: colorizeRating() }}>
-          {imdbRating}/10 on IMBD
+          {imdbRating != 'N/A' && `${imdbRating}/10 on IMBD`}
         </h4>
         <Link className='btn' to='/'>
           Back to Movies
