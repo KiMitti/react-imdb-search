@@ -20,9 +20,9 @@ const SingleMovie = () => {
 
   const colorizeRating = () => {
     const number = parseFloat(imdbRating);
-    if (number >= 8) return 'green';
+    if (number >= 7) return 'green';
     if (number <= 4) return 'red';
-    return;
+    return '#b2a40c';
   };
 
   if (loading) {

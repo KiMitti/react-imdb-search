@@ -33,7 +33,7 @@ Variables
   --clr-white: #fff;
   --clr-red-dark: hsl(360, 67%, 44%);
   --clr-red-light: hsl(360, 71%, 66%);
-  --clr-green-dark: hsl(125, 67%, 44%);
+  --clr-green-dark: hsl(75, 67%, 44%);
   --clr-green-light: hsl(125, 71%, 66%);
   --clr-black: #222;
   --transition: all 0.3s linear;
@@ -139,7 +139,8 @@ Search
 ===============
 */
 .search-form,
-.error-page {
+.error-page,
+.pagination {
   width: 90vw;
   max-width: var(--max-width);
   margin: 0 auto;
@@ -270,6 +271,15 @@ Single Movie
   display: inline-block;
   margin-top: 0.5rem;
   letter-spacing: var(--spacing);
+}
+.pagination .btn {
+  border: 0;
+  border-radius: 0%;
+}
+.btn.active-page,
+.pagination .btn:hover {
+  background-color: var(--clr-primary-1);
+  color: var(--clr-white);
 }
 @media screen and (min-width: 992px) {
   .single-movie {

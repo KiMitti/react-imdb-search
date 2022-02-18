@@ -48,13 +48,13 @@ const AppProvider = ({ children }) => {
   useEffect(() => {
     //go get new movies
     fetchData();
+    console.log(movies);
     // eslint-disable-next-line
-  }, [value]);
+  }, [value, page]);
 
   return (
     <AppContext.Provider
       value={{
-        test: 'hello!',
         value,
         setValue,
         loading,
@@ -64,6 +64,8 @@ const AppProvider = ({ children }) => {
         setSingle,
         err,
         fetchData,
+        page,
+        setPage,
       }}
     >
       {children}
