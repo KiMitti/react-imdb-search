@@ -22,9 +22,9 @@ const SingleMovie = () => {
 
   const colorizeRating = () => {
     const number = parseFloat(imdbRating);
-    if (number >= 7) return 'green';
-    if (number <= 4) return 'red';
-    return '#b2a40c';
+    if (number >= 7) return 'var(--clr-green-light)';
+    if (number <= 4) return 'var(--clr-red-light)';
+    return 'var(--clr-yellow-light)';
   };
 
   if (loading) {
@@ -44,13 +44,13 @@ const SingleMovie = () => {
 
   return (
     <section className='single-movie'>
-      <img src={image != 'N/A' ? image : url} alt={title} />
+      <img src={image !== 'N/A' ? image : url} alt={title} />
       <div className='single-movie-info'>
         <h2>{title}</h2>
         <p>{desc}</p>
         <h4>{year}</h4>
         <h4 className='rating' style={{ color: colorizeRating() }}>
-          {imdbRating != 'N/A' && `${imdbRating}/10 on IMBD`}
+          {imdbRating !== 'N/A' && `${imdbRating}/10 on IMBD`}
         </h4>
         <Link className='btn' to='/'>
           Back to Movies
